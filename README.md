@@ -370,7 +370,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 📞 Contacto
 
-**Desarrollador: J. Salonas**
+**Desarrollador: J. Salinas**
 - Email: jsalonas2003@gmail.com
 - Proyecto: Sistema Web Orquesta Juvenil de Cobquecura
 
