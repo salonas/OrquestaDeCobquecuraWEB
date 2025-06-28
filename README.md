@@ -1,14 +1,12 @@
 # Orquesta Juvenil de Cobquecura - Sistema Web
 
-Sistema web para la gestión administrativa y educativa de la Orquesta Juvenil de Cobquecura.
+Proyecto en curso de sistema web para la gestión administrativa y educativa de la Orquesta Juvenil de Cobquecura.
 
 ## Características Implementadas
 
 Se implementaron las siguientes funcionalidades principales:
 
-- **Panel de Administración**: Se desarrolló gestión completa de estudiantes, profesores y eventos
-- **Panel de Profesores**: Se implementó seguimiento de clases, evaluaciones y progreso estudiantil  
-- **Panel de Estudiantes**: Se creó acceso a horarios, tareas y recursos educativos
+- **Panel de Administración**: Se desarrolló gestión completa de estudiantes, profesores y eventos 
 - **Sistema de Noticias**: Se agregó gestión y publicación de noticias y eventos
 - **Gestión de Instrumentos**: Se implementó control de préstamos y mantenimiento
 
@@ -202,7 +200,7 @@ Este proyecto se desarrolló bajo una Licencia Dual - ver el archivo [LICENSE](L
 
 Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 
-## 🚀 Características
+## Características
 
 - **Panel de Administración**: Gestión completa de estudiantes, profesores y eventos
 - **Panel de Profesores**: Seguimiento de clases, evaluaciones y progreso
@@ -210,7 +208,7 @@ Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 - **Sistema de Noticias**: Publicación de noticias y eventos
 - **Gestión de Instrumentos**: Control de préstamos y mantenimiento
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 ### Frontend
 - React 18
@@ -224,13 +222,13 @@ Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 - JWT Authentication
 - Multer (carga de archivos)
 
-## 📋 Prerrequisitos
+## Prerrequisitos
 
 - Node.js (v16 o superior)
 - MySQL (v8.0 o superior)
 - Git
 
-## ⚙️ Configuración del Proyecto
+## Configuración del Proyecto
 
 ### 1. Clonar el repositorio
 ```bash
@@ -311,7 +309,7 @@ npm start
 # La aplicación se abrirá en http://localhost:3000
 ```
 
-## 🔒 Configuración de Seguridad
+## Configuración de Seguridad
 
 ### Variables de Entorno Críticas
 
@@ -330,7 +328,7 @@ npm start
 - Implementar rate limiting
 - Configurar logs de seguridad
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 ├── client/                 # Frontend React
@@ -357,7 +355,7 @@ npm start
 └── README.md
 ```
 
-## 🚀 Despliegue
+## Despliegue
 
 ### Producción
 
@@ -367,7 +365,7 @@ npm start
 4. Configurar SSL/HTTPS
 5. Configurar base de datos de producción
 
-## 🤝 Contribución
+## Contribución
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -375,19 +373,19 @@ npm start
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📝 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 📞 Contacto
+## Contacto
 
-**Desarrollador: J. Salonas**
+**Desarrollador: J. Salinas**
 - Email: jsalonas2003@gmail.com
 - Proyecto: Sistema Web Orquesta Juvenil de Cobquecura
 
 ---
 
-⭐ ¡Si este proyecto te fue útil, considera darle una estrella en GitHub!
+¡Si este proyecto te fue útil, considera darle una estrella!
 
 ### Code Splitting
 

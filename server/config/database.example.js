@@ -5,7 +5,7 @@ const mysql = require('mysql2/promise');
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'YOUR_PASSWORD_HERE',  // ⚠️  IMPORTANTE: Configurar en archivo .env
+  password: process.env.DB_PASSWORD || 'contraseña',  // ⚠️  IMPORTANTE: Configurar en archivo .env
   database: process.env.DB_NAME || 'orquesta_cobquecura',
   port: process.env.DB_PORT || 3306,
   waitForConnections: true,
