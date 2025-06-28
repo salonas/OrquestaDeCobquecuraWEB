@@ -168,9 +168,9 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 📞 Contacto
 
-**Orquesta Juvenil de Cobquecura**
-- Email: contacto@orquestacobquecura.cl
-- Sitio Web: [www.orquestacobquecura.cl](http://www.orquestacobquecura.cl)
+**Desarrollador: J. Salonas**
+- Email: jsalonas2003@gmail.com
+- Proyecto: Sistema Web Orquesta Juvenil de Cobquecura
 
 ---
 
