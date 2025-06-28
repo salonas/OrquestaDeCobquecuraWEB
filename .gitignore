@@ -14,6 +14,9 @@ dist/
 .env.test.local
 .env.production.local
 
+# Database configuration (CRÍTICO - Contiene credenciales)
+server/config/database.js
+
 # Testing
 /coverage
 
