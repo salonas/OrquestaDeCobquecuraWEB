@@ -1,14 +1,12 @@
 # Orquesta Juvenil de Cobquecura - Sistema Web
 
-Sistema web para la gestión administrativa y educativa de la Orquesta Juvenil de Cobquecura.
+Proyecto en curso de sistema web para la gestión administrativa y educativa de la Orquesta Juvenil de Cobquecura.
 
 ## Características Implementadas
 
 Se implementaron las siguientes funcionalidades principales:
 
-- **Panel de Administración**: Se desarrolló gestión completa de estudiantes, profesores y eventos
-- **Panel de Profesores**: Se implementó seguimiento de clases, evaluaciones y progreso estudiantil  
-- **Panel de Estudiantes**: Se creó acceso a horarios, tareas y recursos educativos
+- **Panel de Administración**: Se desarrolló gestión completa de estudiantes, profesores y eventos 
 - **Sistema de Noticias**: Se agregó gestión y publicación de noticias y eventos
 - **Gestión de Instrumentos**: Se implementó control de préstamos y mantenimiento
 
