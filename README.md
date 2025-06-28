@@ -76,6 +76,15 @@ Se debe crear la base de datos en MySQL:
 CREATE DATABASE orquesta_cobquecura CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
+**IMPORTANTE**: Se debe configurar el archivo de conexión a la base de datos:
+
+```bash
+# Copiar el archivo de configuración de ejemplo
+cp server/config/database.example.js server/config/database.js
+```
+
+Luego editar `server/config/database.js` con las credenciales correctas o asegurarse de que las variables de entorno estén configuradas en `.env`.
+
 Se implementó una base de datos completa con las siguientes funcionalidades:
 
 - **Gestión de Usuarios**: Administradores, profesores y estudiantes
