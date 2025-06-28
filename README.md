@@ -200,7 +200,7 @@ Este proyecto se desarrolló bajo una Licencia Dual - ver el archivo [LICENSE](L
 
 Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 
-## 🚀 Características
+## Características
 
 - **Panel de Administración**: Gestión completa de estudiantes, profesores y eventos
 - **Panel de Profesores**: Seguimiento de clases, evaluaciones y progreso
@@ -208,7 +208,7 @@ Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 - **Sistema de Noticias**: Publicación de noticias y eventos
 - **Gestión de Instrumentos**: Control de préstamos y mantenimiento
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 ### Frontend
 - React 18
@@ -222,13 +222,13 @@ Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 - JWT Authentication
 - Multer (carga de archivos)
 
-## 📋 Prerrequisitos
+## Prerrequisitos
 
 - Node.js (v16 o superior)
 - MySQL (v8.0 o superior)
 - Git
 
-## ⚙️ Configuración del Proyecto
+## Configuración del Proyecto
 
 ### 1. Clonar el repositorio
 ```bash
