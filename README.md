@@ -309,7 +309,7 @@ npm start
 # La aplicación se abrirá en http://localhost:3000
 ```
 
-## 🔒 Configuración de Seguridad
+## Configuración de Seguridad
 
 ### Variables de Entorno Críticas
 
@@ -328,7 +328,7 @@ npm start
 - Implementar rate limiting
 - Configurar logs de seguridad
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 ├── client/                 # Frontend React
@@ -355,7 +355,7 @@ npm start
 └── README.md
 ```
 
-## 🚀 Despliegue
+## Despliegue
 
 ### Producción
 
@@ -365,7 +365,7 @@ npm start
 4. Configurar SSL/HTTPS
 5. Configurar base de datos de producción
 
-## 🤝 Contribución
+## Contribución
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -373,11 +373,11 @@ npm start
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📝 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 📞 Contacto
+## Contacto
 
 **Desarrollador: J. Salinas**
 - Email: jsalonas2003@gmail.com
@@ -385,7 +385,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ---
 
-⭐ ¡Si este proyecto te fue útil, considera darle una estrella en GitHub!
+¡Si este proyecto te fue útil, considera darle una estrella!
 
 ### Code Splitting
 
