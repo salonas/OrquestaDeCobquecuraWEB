@@ -78,16 +78,19 @@ Se debe crear la base de datos en MySQL:
 CREATE DATABASE orquesta_cobquecura CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Luego se debe importar el esquema de la base de datos:
+Se implementó una base de datos completa con las siguientes funcionalidades:
+
+- **Gestión de Usuarios**: Administradores, profesores y estudiantes
+- **Sistema Académico**: Asignaciones, horarios, asistencia y evaluaciones
+- **Progreso Estudiantil**: Seguimiento del desarrollo musical
+- **Gestión de Instrumentos**: Inventario y préstamos
+- **Eventos y Noticias**: Sistema de comunicación
+- **Tokens de Registro**: Sistema seguro de invitaciones
+
+Para importar la estructura completa:
 
 ```bash
 mysql -u tu_usuario -p orquesta_cobquecura < database/schema.sql
-```
-
-Para desarrollo, se puede cargar datos de ejemplo:
-
-```bash
-mysql -u tu_usuario -p orquesta_cobquecura < database/sample_data.sql
 ```
 
 ### 4. Instalación de dependencias
@@ -162,8 +165,8 @@ Se organizó el proyecto con la siguiente estructura:
 │   ├── routes/          # Rutas API
 │   └── uploads/         # Archivos subidos
 ├── database/             # Scripts de base de datos
-│   ├── schema.sql       # Estructura de la base de datos
-│   └── sample_data.sql  # Datos de ejemplo
+│   ├── schema.sql       # Estructura completa de la base de datos
+│   └── README.md        # Documentación de la base de datos
 ├── .env.example         # Plantilla de variables de entorno
 └── README.md
 ```
