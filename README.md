@@ -1,18 +1,21 @@
-# Orquesta Juvenil de Cobquecura - Sistema Web
+> :information_source: **For the Spanish version, see [README.es.md](README.es.md)**  
+> :information_source: **Para la versión en español, revisa [README.es.md](README.es.md)**
 
-Proyecto en curso de sistema web para la gestión administrativa y educativa de la Orquesta Juvenil de Cobquecura.
+# Cobquecura Youth Orchestra - Web System
 
-## Características Implementadas
+Ongoing web system project for the administrative and educational management of the Cobquecura Youth Orchestra.
 
-Se implementaron las siguientes funcionalidades principales:
+## Implemented Features
 
-- **Panel de Administración**: Se desarrolló gestión completa de estudiantes, profesores y eventos 
-- **Sistema de Noticias**: Se agregó gestión y publicación de noticias y eventos
-- **Gestión de Instrumentos**: Se implementó control de préstamos y mantenimiento
+The following main functionalities have been implemented:
 
-## Stack Tecnológico
+- **Administration Panel**: Complete management of students, teachers, and events.
+- **News System**: Management and publication of news and events.
+- **Instrument Management**: Control of loans and maintenance.
 
-Se utilizaron las siguientes tecnologías:
+## Technology Stack
+
+The following technologies have been used:
 
 ### Frontend
 - React 18
@@ -24,83 +27,83 @@ Se utilizaron las siguientes tecnologías:
 - Express.js
 - MySQL
 - JWT Authentication
-- Multer (manejo de archivos)
+- Multer (file handling)
 
-## Prerrequisitos del Sistema
+## System Prerequisites
 
-Se requiere la instalación de:
+Requires installation of:
 
-- Node.js (versión 16 o superior)
-- MySQL (versión 8.0 o superior)
+- Node.js (version 16 or higher)
+- MySQL (version 8.0 or higher)
 - Git
 
-## Configuración del Proyecto
+## Project Setup
 
-### 1. Clonación del repositorio
+### 1. Clone the repository
 ```bash
 git clone https://github.com/salonas/OrquestaDeCobquecuraWEB.git
 cd OrquestaDeCobquecuraWEB
 ```
 
-### 2. Configuración de variables de entorno
+### 2. Environment variables setup
 
-Se debe copiar el archivo `.env.example` a `.env` y configurar las variables:
+Copy the `.env.example` file to `.env` and configure the variables:
 
 ```bash
 cp .env.example .env
 ```
 
-Se debe editar el archivo `.env` con las credenciales correspondientes:
+Edit the `.env` file with your credentials:
 
 ```env
-# Configuración de la Base de Datos
+# Database configuration
 DB_HOST=localhost
-DB_USER=tu_usuario_db
-DB_PASSWORD=tu_contraseña_db
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
 DB_NAME=orquesta_cobquecura
 DB_PORT=3306
 
-# Configuración JWT (IMPORTANTE: Debe cambiarse por una clave segura)
-JWT_SECRET=tu_clave_secreta_jwt_muy_larga_y_segura_de_al_menos_64_caracteres
+# JWT Configuration (IMPORTANT: Use a secure key)
+JWT_SECRET=your_jwt_secret_password_of_at_least_64_characters
 
-# Configuración del Servidor
+# Server configuration
 PORT=5000
 NODE_ENV=development
 ```
 
-### 3. Configuración de la Base de Datos
+### 3. Database Setup
 
-Se debe crear la base de datos en MySQL:
+You must create the database in MySQL:
 
 ```sql
 CREATE DATABASE orquesta_cobquecura CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-**IMPORTANTE**: Se debe configurar el archivo de conexión a la base de datos:
+**IMPORTANT**: Configure the database connection file:
 
 ```bash
-# Copiar el archivo de configuración de ejemplo
+# Copy the example config file
 cp server/config/database.example.js server/config/database.js
 ```
 
-Luego editar `server/config/database.js` con las credenciales correctas o asegurarse de que las variables de entorno estén configuradas en `.env`.
+Then edit `server/config/database.js` with the correct credentials or ensure that the environment variables are set in `.env`.
 
-Se implementó una base de datos completa con las siguientes funcionalidades:
+A full database is implemented with the following features:
 
-- **Gestión de Usuarios**: Administradores, profesores y estudiantes
-- **Sistema Académico**: Asignaciones, horarios, asistencia y evaluaciones
-- **Progreso Estudiantil**: Seguimiento del desarrollo musical
-- **Gestión de Instrumentos**: Inventario y préstamos
-- **Eventos y Noticias**: Sistema de comunicación
-- **Tokens de Registro**: Sistema seguro de invitaciones
+- **User Management**: Admins, teachers, and students
+- **Academic System**: Assignments, schedules, attendance, and evaluations
+- **Student Progress**: Tracking musical development
+- **Instrument Management**: Inventory and loans
+- **Events and News**: Communication system
+- **Registration Tokens**: Secure invitation system
 
-Para importar la estructura completa:
+To import the full structure:
 
 ```bash
-mysql -u tu_usuario -p orquesta_cobquecura < database/schema.sql
+mysql -u your_user -p orquesta_cobquecura < database/schema.sql
 ```
 
-### 4. Instalación de dependencias
+### 4. Install dependencies
 
 #### Backend
 ```bash
@@ -114,101 +117,107 @@ cd ../client
 npm install
 ```
 
-### 5. Ejecución del proyecto
+### 5. Run the project
 
-#### Desarrollo - Backend
+#### Development - Backend
 ```bash
 cd server
 npm start
-# El servidor se ejecutará en http://localhost:5000
+# The server will run at http://localhost:5000
 ```
 
-#### Desarrollo - Frontend
+#### Development - Frontend
 ```bash
 cd client
 npm start
-# La aplicación se abrirá en http://localhost:3000
+# The application will open at http://localhost:3000
 ```
 
-## Configuración de Seguridad
+## Security Configuration
 
-### Variables de Entorno Críticas
+### Critical Environment Variables
 
-Se implementaron las siguientes medidas de seguridad:
+The following security measures were implemented:
 
-1. **JWT_SECRET**: Se configuró para requerir una cadena aleatoria de al menos 64 caracteres
-   - Se puede generar con: `openssl rand -base64 64`
-   - Esta clave nunca debe compartirse
+1. **JWT_SECRET**: Configured to require a random string of at least 64 characters
+   - You can generate it with: `openssl rand -base64 64`
+   - This key must never be shared
 
-2. **Credenciales de Base de Datos**: Se eliminaron del código fuente
-   - Se debe usar un usuario específico para la aplicación
-   - Se deben configurar permisos mínimos necesarios
+2. **Database Credentials**: Removed from the source code
+   - A specific user for the application must be used
+   - Only minimum necessary permissions should be set
 
-### Recomendaciones adicionales implementadas
+### Additional Recommendations Implemented
 
-- Se removieron todas las contraseñas por defecto
-- Se configuró para requerir HTTPS en producción
-- Se preparó para implementar rate limiting
-- Se configuraron logs de seguridad
+- All default passwords were removed
+- Configured to require HTTPS in production
+- Prepared for rate limiting
+- Security logs configured
 
-## Estructura del Proyecto
+## Project Structure
 
-Se organizó el proyecto con la siguiente estructura:
+The project is organized as follows:
 
 ```
-├── client/                 # Frontend React
+├── client/                 # React Frontend
 │   ├── public/
 │   ├── src/
-│   │   ├── components/     # Componentes reutilizables
-│   │   ├── pages/         # Páginas principales
-│   │   ├── context/       # Context API
-│   │   └── utils/         # Utilidades
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/          # Main pages
+│   │   ├── context/        # Context API
+│   │   └── utils/          # Utilities
 │   └── package.json
-├── server/                # Backend Node.js
-│   ├── config/           # Configuración
-│   ├── controllers/      # Controladores
-│   ├── middleware/       # Middleware
-│   ├── models/          # Modelos de datos
-│   ├── routes/          # Rutas API
-│   └── uploads/         # Archivos subidos
-├── database/             # Scripts de base de datos
-│   ├── schema.sql       # Estructura completa de la base de datos
-│   └── README.md        # Documentación de la base de datos
-├── .env.example         # Plantilla de variables de entorno
+├── server/                 # Node.js Backend
+│   ├── config/             # Configuration
+│   ├── controllers/        # Controllers
+│   ├── middleware/         # Middleware
+│   ├── models/             # Data models
+│   ├── routes/             # API routes
+│   └── uploads/            # Uploaded files
+├── database/               # Database scripts
+│   ├── schema.sql          # Full database schema
+│   └── README.md           # Database documentation
+├── .env.example            # Environment variable template
 └── README.md
 ```
 
-## Despliegue a Producción
+## Production Deployment
 
-Se preparó el proyecto para despliegue con los siguientes pasos:
+The project is prepared for deployment with these steps:
 
-1. Se configuraron variables de entorno de producción
-2. Se puede construir el frontend: `npm run build` (en /client)
-3. Se debe configurar servidor web (nginx/apache)
-4. Se debe configurar SSL/HTTPS
-5. Se debe configurar base de datos de producción
+1. Configure production environment variables
+2. Build the frontend: `npm run build` (in /client)
+3. Set up a web server (nginx/apache)
+4. Configure SSL/HTTPS
+5. Configure production database
 
-## Licencia
+## License
 
-Este proyecto se desarrolló bajo una Licencia Dual - ver el archivo [LICENSE](LICENSE) para detalles.
+[![License: Dual](https://img.shields.io/badge/license-dual-blue.svg)](LICENSE)
 
-## Contacto
+This project is distributed under a Dual License:  
+- **Open Source License (GPL v3):** For non-commercial, educational and open-source use.
+- **Commercial License:** For commercial use, customization or resale. Contact jsalonas2003@gmail.com for details.
 
-**Desarrollador: J. Salonas**
+See the [LICENSE](LICENSE) file for complete terms.
+
+## Contact
+
+**Developer: J. Salinas**
 - Email: jsalonas2003@gmail.com
-- Proyecto: Sistema Web Orquesta Juvenil de Cobquecura
+- Project: Cobquecura Youth Orchestra Web System
 
-Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
+If you find this project useful, please consider giving it a star on GitHub.
 
-## Características
+## Features
 
-- **Panel de Administración**: Gestión completa de estudiantes, profesores y eventos
-- **Panel de Profesores**: Seguimiento de clases, evaluaciones y progreso
-- **Panel de Estudiantes**: Acceso a horarios, tareas y recursos
-- **Sistema de Noticias**: Publicación de noticias y eventos
-- **Gestión de Instrumentos**: Control de préstamos y mantenimiento
+- **Administration Panel**: Complete management of students, teachers, and events
+- **Teachers Panel**: Class tracking, evaluations, and progress
+- **Students Panel**: Access to schedules, assignments, and resources
+- **News System**: Publication of news and events
+- **Instrument Management**: Control of loans and maintenance
 
-## Tecnologías
+## Technologies
 
 ### Frontend
 - React 18
@@ -220,66 +229,66 @@ Si este proyecto resultó útil, se agradece darle una estrella en GitHub.
 - Express.js
 - MySQL
 - JWT Authentication
-- Multer (carga de archivos)
+- Multer (file upload)
 
-## Prerrequisitos
+## Prerequisites
 
-- Node.js (v16 o superior)
-- MySQL (v8.0 o superior)
+- Node.js (v16 or higher)
+- MySQL (v8.0 or higher)
 - Git
 
-## Configuración del Proyecto
+## Project Setup
 
-### 1. Clonar el repositorio
+### 1. Clone the repository
 ```bash
 git clone https://github.com/salonas/OrquestaDeCobquecuraWEB.git
 cd OrquestaDeCobquecuraWEB
 ```
 
-### 2. Configurar variables de entorno
+### 2. Configure environment variables
 
-Copia el archivo `.env.example` a `.env` y configura las variables:
+Copy the `.env.example` file to `.env` and set your variables:
 
 ```bash
 cp .env.example .env
 ```
 
-Edita el archivo `.env` con tus credenciales:
+Edit the `.env` file with your credentials:
 
 ```env
-# Configuración de la Base de Datos
+# Database configuration
 DB_HOST=localhost
-DB_USER=tu_usuario_db
-DB_PASSWORD=tu_contraseña_db
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
 DB_NAME=orquesta_cobquecura
 DB_PORT=3306
 
-# Configuración JWT (IMPORTANTE: Cambia por una clave segura)
-JWT_SECRET=tu_clave_secreta_jwt_muy_larga_y_segura_de_al_menos_64_caracteres
+# JWT Configuration (IMPORTANT: Use a secure key)
+JWT_SECRET=your_jwt_secret_password_of_at_least_64_characters
 
-# Configuración del Servidor
+# Server configuration
 PORT=5000
 NODE_ENV=development
 ```
 
-### 3. Configurar la Base de Datos
+### 3. Set up the Database
 
-1. Crea la base de datos en MySQL:
+1. Create the database in MySQL:
 ```sql
 CREATE DATABASE orquesta_cobquecura CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-2. Importa el esquema de la base de datos:
+2. Import the database schema:
 ```bash
-mysql -u tu_usuario -p orquesta_cobquecura < database/schema.sql
+mysql -u your_user -p orquesta_cobquecura < database/schema.sql
 ```
 
-3. Verifica que las tablas se crearon correctamente:
+3. Make sure the tables were created correctly:
 ```bash
-mysql -u tu_usuario -p -e "SHOW TABLES;" orquesta_cobquecura
+mysql -u your_user -p -e "SHOW TABLES;" orquesta_cobquecura
 ```
 
-### 4. Instalar dependencias
+### 4. Install dependencies
 
 #### Backend
 ```bash
@@ -293,99 +302,99 @@ cd ../client
 npm install
 ```
 
-### 5. Ejecutar el proyecto
+### 5. Run the project
 
-#### Desarrollo - Backend
+#### Development - Backend
 ```bash
 cd server
 npm start
-# El servidor se ejecutará en http://localhost:5000
+# The server will run at http://localhost:5000
 ```
 
-#### Desarrollo - Frontend
+#### Development - Frontend
 ```bash
 cd client
 npm start
-# La aplicación se abrirá en http://localhost:3000
+# The application will open at http://localhost:3000
 ```
 
-## Configuración de Seguridad
+## Security Configuration
 
-### Variables de Entorno Críticas
+### Critical Environment Variables
 
-1. **JWT_SECRET**: Debe ser una cadena aleatoria de al menos 64 caracteres
-   - Generar con: `openssl rand -base64 64`
-   - Nunca compartir esta clave
+1. **JWT_SECRET**: Must be a random string of at least 64 characters
+   - Generate with: `openssl rand -base64 64`
+   - Never share this key
 
-2. **Credenciales de Base de Datos**: Nunca incluir en el código fuente
-   - Usar un usuario específico para la aplicación
-   - Configurar permisos mínimos necesarios
+2. **Database Credentials**: Never include in the source code
+   - Use a specific user for the application
+   - Set only minimum permissions
 
-### Recomendaciones adicionales
+### Additional Recommendations
 
-- Cambiar contraseñas por defecto
-- Configurar HTTPS en producción
-- Implementar rate limiting
-- Configurar logs de seguridad
+- Change default passwords
+- Configure HTTPS in production
+- Implement rate limiting
+- Set up security logs
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
-├── client/                 # Frontend React
+├── client/                 # React Frontend
 │   ├── public/
 │   ├── src/
-│   │   ├── components/     # Componentes reutilizables
-│   │   ├── pages/         # Páginas principales
-│   │   ├── context/       # Context API
-│   │   └── utils/         # Utilidades
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/          # Main pages
+│   │   ├── context/        # Context API
+│   │   └── utils/          # Utilities
 │   └── package.json
-├── server/                # Backend Node.js
-│   ├── config/           # Configuración
-│   ├── controllers/      # Controladores
-│   ├── middleware/       # Middleware
-│   ├── models/          # Modelos de datos
-│   ├── routes/          # Rutas API
-│   └── uploads/         # Archivos subidos
-├── database/            # Scripts de Base de Datos
-│   ├── schema.sql       # Estructura completa de BD
-│   └── README.md        # Documentación de BD
-├── .env.example         # Plantilla de variables de entorno
-├── LICENSE              # Licencia dual del proyecto
-├── SECURITY.md          # Guías de seguridad
+├── server/                 # Node.js Backend
+│   ├── config/             # Configuration
+│   ├── controllers/        # Controllers
+│   ├── middleware/         # Middleware
+│   ├── models/             # Data models
+│   ├── routes/             # API routes
+│   └── uploads/            # Uploaded files
+├── database/               # Database scripts
+│   ├── schema.sql          # Full DB schema
+│   └── README.md           # DB documentation
+├── .env.example            # Environment variable template
+├── LICENSE                 # Project dual license
+├── SECURITY.md             # Security guidelines
 └── README.md
 ```
 
-## Despliegue
+## Deployment
 
-### Producción
+### Production
 
-1. Configurar variables de entorno de producción
-2. Construir el frontend: `npm run build` (en /client)
-3. Configurar servidor web (nginx/apache)
-4. Configurar SSL/HTTPS
-5. Configurar base de datos de producción
+1. Set production environment variables
+2. Build the frontend: `npm run build` (in /client)
+3. Set up a web server (nginx/apache)
+4. Set up SSL/HTTPS
+5. Set up the production database
 
-## Contribución
+## Contributing
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Licencia
+## License
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+This project is under a Dual License - see the [LICENSE](LICENSE) file for details.
 
-## Contacto
+## Contact
 
-**Desarrollador: J. Salinas**
+**Developer: J. Salinas**
 - Email: jsalonas2003@gmail.com
-- Proyecto: Sistema Web Orquesta Juvenil de Cobquecura
+- Project: Cobquecura Youth Orchestra Web System
 
 ---
 
-¡Si este proyecto te fue útil, considera darle una estrella!
+If you found this project useful, please consider giving it a star!
 
 ### Code Splitting
 
