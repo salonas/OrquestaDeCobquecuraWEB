@@ -1,0 +1,2310 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* Viewport dinámico mejorado */
+:root {
+  --vh: 1vh;
+  --azul-marino: #0d1748; /* Actualizado a más oscuro */
+  --azul-claro: #3949ab;
+  --azul-accent: #5c6bc0;
+  --azul-muy-claro: #e8eaf6;
+  --azul-super-claro: #f3f4f9;
+  --azul-gris: #f8f9fd;
+  --azul-card: #f0f2ff;
+  --azul-card-hover: #e3e7ff;
+}
+
+/* Aplicar fondo a todo el body cuando esté en vista pública */
+body.vista-publica-body {
+  background-image: 
+    linear-gradient(
+      135deg, 
+      rgba(26, 35, 126, 0.85) 0%, 
+      rgba(57, 73, 171, 0.75) 25%,
+      rgba(92, 107, 192, 0.65) 50%,
+      rgba(26, 35, 126, 0.75) 75%,
+      rgba(57, 73, 171, 0.85) 100%
+    ),
+    url('../../img/loberia.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.vista-publica {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Clases de color */
+.bg-azul-marino {
+  background-color: var(--azul-marino) !important;
+}
+
+.bg-azul-claro {
+  background-color: var(--azul-claro) !important;
+}
+
+.bg-azul-muy-claro {
+  background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--azul-super-claro) 100%) !important;
+}
+
+.text-azul-marino {
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700 !important;
+}
+
+.text-azul-marino i {
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  margin-right: 0.5rem;
+}
+
+/* Alternativa color más suave */
+.text-azul-marino i.fa-newspaper {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Asegurar que todos los títulos en secciones azules sean blancos */
+.py-5 h1,
+.py-4 h1,
+.container h1.text-azul-marino,
+h1.text-azul-marino {
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Hero Section con imagen de fondo */
+.seccion-hero {
+  min-height: calc(var(--vh, 1vh) * 100);
+  height: 100vh; 
+  height: 100svh; 
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(26, 35, 126, 0.85) 0%, 
+    rgba(57, 73, 171, 0.75) 50%,
+    rgba(92, 107, 192, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+.seccion-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.min-vh-70 {
+  min-height: 70vh;
+}
+
+.hero-content {
+  width: 100%;
+  padding: clamp(1rem, 5vw, 3rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* NUEVAS ANIMACIONES Y FONDO COMPLETO */
+
+/* Asegurarse que el fondo cubra toda la pantalla hasta la barra de tareas */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Secciones con fondo semi-transparente para mejorar legibilidad */
+.seccion-noticias {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 0;
+}
+
+/* Cards con mayor opacidad para mejor legibilidad */
+.card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(92, 107, 192, 0.2);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 35, 126, 0.25) !important;
+}
+
+/* Footer con fondo más oscuro */
+footer,
+.footer,
+.bg-azul-marino {
+  background: #0d1748 !important; 
+  background-color: #0d1748 !important;
+}
+
+/* También actualizar la variable CSS para consistencia */
+:root {
+  --vh: 1vh;
+  --azul-marino: #0d1748; 
+  --azul-claro: #3949ab;
+  --azul-accent: #5c6bc0;
+  --azul-muy-claro: #e8eaf6;
+  --azul-super-claro: #f3f4f9;
+  --azul-gris: #f8f9fd;
+  --azul-card: #f0f2ff;
+  --azul-card-hover: #e3e7ff;
+}
+
+/* Sección de estadísticas también más oscura */
+.bg-azul-marino {
+  background-color: #0d1748 !important;
+  position: relative;
+  z-index: 5;
+}
+
+/* Animaciones al hacer scroll */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animación de contadores */
+.counter-animate {
+    transition: all 0.3s ease;
+    font-size: 3rem !important;
+}
+
+/* Estadísticas con animación mejorada */
+.stat-item {
+    padding: clamp(10px, 3vw, 20px);
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+/* Cards con animación de entrada */
+.card-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.card-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación flotante para iconos mejorada */
+.floating-icon {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-25px) rotate(5deg); 
+    }
+}
+
+/* Botones con animación mejorada */
+.btn-acceso, .btn-contacto {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-acceso:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-contacto:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Efecto parallax para secciones */
+.parallax-section {
+    will-change: transform;
+}
+
+/* Cards de noticias con animación mejorada */
+.card-noticia:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(26, 35, 126, 0.25) !important;
+}
+
+/* Logo hero con animación de entrada */
+.logo-hero-blanco {
+    animation: logoEntrance 1.5s ease-out;
+}
+
+@keyframes logoEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(0.9) translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Animación de entrada para el título */
+.hero-title-animate {
+    animation: titleSlideIn 1s ease-out 0.5s both;
+}
+
+@keyframes titleSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animación de entrada para el subtítulo */
+.hero-subtitle-animate {
+    animation: subtitleSlideIn 1s ease-out 1s both;
+}
+
+@keyframes subtitleSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animación de entrada para los botones */
+.hero-buttons-animate {
+    animation: buttonsSlideUp 1s ease-out 1.5s both;
+}
+
+@keyframes buttonsSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logos */
+
+/* Logo del hero */
+.logo-hero-blanco {
+  max-height: clamp(0px, 25vw, 200px);
+  width: auto;
+  height: auto;
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(100%) 
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(0deg) 
+    brightness(100%) 
+    contrast(100%)
+    drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.logo-hero-blanco:hover {
+  transform: scale(1.05);
+}
+
+/* Logo sidebar */
+.logo-sidebar-grande {
+  max-height: 180px;
+  width: auto;
+}
+
+/* Logo sobre nosotros */
+.logo-sobre-nosotros {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Logo contacto - OCULTO */
+.logo-contacto-blanco {
+  display: none;
+  max-height: 80px;
+  width: auto;
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(100%) 
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(0deg) 
+    brightness(100%) 
+    contrast(100%);
+  margin-bottom: 1rem;
+}
+
+/* Logo footer */
+.logo-footer {
+  transition: transform 0.3s ease;
+  filter: brightness(1.1);
+  margin: 0 8px; 
+  vertical-align: middle;
+}
+
+.logo-footer:hover {
+  transform: scale(1.05);
+}
+
+/* Logos personalizados en el footer */
+.logo-orquesta-footer {
+  height: 42px !important; 
+}
+
+.logo-municipal-footer {
+  height: 60px !important;
+}
+
+.logo-foji-footer {
+  height: 32px !important; 
+}
+
+/* Responsive para logos del footer */
+@media (max-width: 768px) {
+  .logo-orquesta-footer {
+    height: 32px !important;
+  }
+  .logo-municipal-footer {
+    height: 42px !important; 
+  }
+  .logo-foji-footer {
+    height: 25px !important; 
+  }
+  
+  .logo-footer {
+    margin: 0 5px; 
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-orquesta-footer {
+    height: 25px !important; 
+  }
+  .logo-municipal-footer {
+    height: 34px !important; 
+  }
+  .logo-foji-footer {
+    height: 22px !important; 
+  }
+  
+  .logo-footer {
+    margin: 0 3px; 
+  }
+}
+
+/* Botones personalizados - TEXTO BLANCO PARA EL BOTÓN DE ACCESO */
+.btn-acceso {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+  
+}
+
+.btn-acceso:hover {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-acceso:focus,
+.btn-acceso:active {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3) !important;
+  text-shadow: none !important;
+}
+
+.btn-contacto {
+  border: 2px solid white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-contacto:hover {
+  background: white;
+  color: var(--azul-marino);
+  transform: translateY(-2px);
+}
+
+.btn-leer-mas {
+  border-color: var(--azul-marino);
+  color: var(--azul-marino);
+}
+
+/* Botón de contacto pequeño en la card - MEJORADO */
+.btn-contacto-small {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--azul-marino) !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.5rem !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.btn-contacto-small:hover {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-contacto-small:focus,
+.btn-contacto-small:active {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--azul-marino) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Estadísticas */
+.stat-item {
+  padding: clamp(10px, 3vw, 20px);
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-item h2 {
+  font-size: clamp(1.5rem, 4vw, 3rem) !important;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* FONDOS AZULES PARA NOTICIAS */
+
+/* Sección de noticias con fondo azul claro */
+.seccion-noticias {
+  background: linear-gradient(
+    135deg, 
+    var(--azul-muy-claro) 0%, 
+    var(--azul-super-claro) 50%,
+    #e3f2fd 100%
+  ) !important;
+}
+
+/* Cards con fondo azul suave */
+.card-noticia {
+  border-left: 4px solid var(--azul-marino);
+  transition: all 0.3s ease;
+  background: var(--azul-card) !important;
+  border: 1px solid rgba(26, 35, 126, 0.1);
+}
+
+.card-noticia:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(26, 35, 126, 0.25) !important;
+  background: var(--azul-card-hover) !important;
+}
+
+/* Card del logo con fondo azul */
+.card-logo {
+  border: 2px solid var(--azul-accent);
+  transition: all 0.3s ease;
+  background: var(--azul-card) !important;
+}
+
+.card-logo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(26, 35, 126, 0.15) !important;
+  background: var(--azul-card-hover) !important;
+}
+
+/* Cards de redes sociales y eventos con fondo azul */
+.card {
+  background: var(--azul-card) !important;
+  border: 1px solid rgba(92, 107, 192, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: var(--azul-card-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26, 35, 126, 0.15) !important;
+}
+
+.badge-tipo {
+  font-size: 0.75rem;
+}
+
+/* Eventos con estilo de bandejas pequeñas - ESTILO ELEGANTE MEJORADO CON SEPARACIÓN */
+.evento-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, var(--azul-super-claro) 98%) !important;
+  border: 1px solid rgba(92, 107, 192, 0.12);
+  border-left: 4px solid var(--azul-marino);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 3px 12px rgba(26, 35, 126, 0.1),
+    0 1px 4px rgba(26, 35, 126, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.evento-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--azul-marino), var(--azul-claro));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.evento-item:hover {
+  transform: translateY(-5px) translateX(3px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, var(--azul-card) 100%) !important;
+  border-left-color: var(--azul-marino);
+  border-color: rgba(92, 107, 192, 0.2);
+  box-shadow: 
+    0 10px 30px rgba(26, 35, 126, 0.18),
+    0 4px 15px rgba(26, 35, 126, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.evento-item:hover::before {
+  opacity: 1;
+}
+
+/* Separador visual elegante entre eventos */
+.evento-item + .evento-item {
+  margin-top: 2rem !important;
+  position: relative;
+}
+
+.evento-item + .evento-item::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--azul-marino) 20%, var(--azul-claro) 50%, var(--azul-marino) 80%, transparent 100%);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* Separador decorativo adicional con puntos */
+.evento-item + .evento-item::after {
+  content: '●';
+  position: absolute;
+  top: -1.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--azul-marino);
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Headers de cards con azul marino */
+.card-header.bg-azul-marino {
+  background: var(--azul-marino) !important;
+  color: white;
+}
+
+.card-header.bg-warning {
+  background: linear-gradient(45deg, #ffc107, #ffb300) !important;
+  color: #212529;
+}
+
+/* Social Buttons */
+.boton-social {
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 600;
+}
+
+.boton-facebook {
+  background: linear-gradient(45deg, #3b5998, #4267B2);
+}
+
+.boton-facebook:hover {
+  background: linear-gradient(45deg, #2d4373, #365899);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 89, 152, 0.4);
+}
+
+.boton-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.boton-instagram:hover {
+  background: linear-gradient(45deg, #d6842a 0%, #cd5d33 25%, #c3213a 50%, #b31d5c 75%, #a3157f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(240, 148, 51, 0.4);
+}
+
+/* Decoración musical */
+.decoracion-musical {
+  display: none; 
+  margin-top: 2rem;
+}
+
+/* Contact Section */
+.item-contacto {
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.item-contacto:hover {
+  transform: translateY(-5px);
+}
+
+.item-contacto i {
+  opacity: 0.9;
+}
+
+/* Enlaces sociales */
+.enlaces-sociales a {
+  transition: all 0.3s ease;
+}
+
+.enlaces-sociales a:hover {
+  color: var(--azul-accent) !important;
+  transform: translateY(-2px);
+}
+
+/* Clase para hacer logos blancos */
+.logo-white {
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(100%) 
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(0deg) 
+    brightness(100%) 
+    contrast(100%)
+    drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seccion-hero {
+    min-height: 100vh !important;
+    text-align: center;
+  }
+  
+  .seccion-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .logo-hero-blanco {
+    max-height: 250px;
+    animation-duration: 1s; 
+  }
+  
+  .logo-sidebar-grande {
+    max-height: 120px;
+  }
+  
+  .logo-contacto-blanco {
+    max-height: 60px;
+  }
+  
+  .stat-item h2 {
+    font-size: 2rem;
+  }
+  
+  .boton-social {
+    margin-bottom: 10px;
+  }
+  
+  .d-flex.gap-3 {
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+  
+  /* Card de acceso en el lado derecho del hero */
+  .hero-side-content {
+    padding: 2rem 1rem;
+    min-height: auto;
+    margin-top: 2rem;
+  }
+  
+  .acceso-card {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+  }
+  
+  .seccion-hero .container .row {
+    flex-direction: column;
+  }
+  
+  .seccion-hero .container .row .col-lg-8 {
+    order: 1;
+  }
+  
+  .seccion-hero .container .row .col-lg-4 {
+    order: 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-hero-blanco {
+    max-height: 200px;
+  }
+  
+  .logo-sidebar-grande {
+    max-height: 100px;
+  }
+  
+  .seccion-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .btn-contacto {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .acceso-card {
+    margin-top: 2rem;
+  }
+}
+
+/* Grid responsivo mejorado */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Secciones con padding responsivo */
+.py-5 {
+  padding-top: clamp(2rem, 5vw, 4rem) !important;
+  padding-bottom: clamp(2rem, 5vw, 4rem) !important;
+}
+
+.py-4 {
+  padding-top: clamp(1.5rem, 4vw, 3rem) !important;
+  padding-bottom: clamp(1.5rem, 4vw, 3rem) !important;
+}
+
+/* Cards responsivos */
+.card {
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.card-body {
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Footer responsivo */
+footer {
+  padding: clamp(1rem, 2vw, 1.5rem) 0 !important;
+}
+
+footer .text-center {
+  color: rgba(255, 255, 255, 0.85) !important; 
+}
+
+footer .text-center p,
+footer .text-center small {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-style: normal !important; 
+}
+
+footer .text-light {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-style: normal !important; 
+}
+
+/* Card de acceso en el lado derecho del hero */
+.hero-side-content {
+  padding: clamp(2rem, 5vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.acceso-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: clamp(2rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.acceso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.acceso-card h4 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.acceso-card .btn-acceso {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+/* CORRECCIÓN LOGOS DEL FOOTER */
+.logo-footer {
+  transition: transform 0.3s ease;
+  filter: brightness(1.1);
+  margin: 0 8px; 
+  vertical-align: middle;
+}
+
+.logo-footer:hover {
+  transform: scale(1.05);
+}
+
+/* Logos personalizados en el footer */
+.logo-orquesta-footer {
+  height: 42px !important; 
+}
+
+.logo-municipal-footer {
+  height: 60px !important; 
+}
+
+.logo-foji-footer {
+  height: 32px !important; 
+}
+
+/* Responsive para logos del footer */
+@media (max-width: 768px) {
+  .logo-orquesta-footer {
+    height: 32px !important;
+  }
+  .logo-municipal-footer {
+    height: 42px !important; 
+  }
+  .logo-foji-footer {
+    height: 25px !important; 
+  }
+  
+  .logo-footer {
+    margin: 0 5px; 
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-orquesta-footer {
+    height: 25px !important; 
+  }
+  .logo-municipal-footer {
+    height: 34px !important; 
+  }
+  .logo-foji-footer {
+    height: 22px !important; 
+  }
+  
+  .logo-footer {
+    margin: 0 3px; 
+  }
+}
+
+/* CORRECCIÓN FOOTER */
+footer {
+  padding: clamp(1rem, 2vw, 1.5rem) 0 !important;
+}
+
+footer .text-center {
+  color: rgba(255, 255, 255, 0.85) !important; 
+}
+
+footer .text-center p,
+footer .text-center small {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-style: normal !important; 
+}
+
+footer .text-light {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-style: normal !important; 
+}
+
+/* QUITAR TEXTO EN CURSIVA */
+.vista-publica,
+.vista-publica * {
+  font-style: normal !important;
+}
+
+/* Excepciones específicas donde SÍ queremos cursiva (si las hay) */
+.texto-especial-cursiva {
+  font-style: italic !important;
+}
+
+/* Corrección específica para elementos que aparecen en cursiva */
+.text-muted,
+.small,
+p,
+.lead,
+.item-contacto p,
+.item-contacto h5,
+#contacto p,
+#contacto .lead,
+.seccion-noticias p,
+.evento-item p,
+.card-body p {
+  font-style: normal !important;
+}
+
+/* Sección "Sobre Nosotros" - mismo color que contacto */
+.bg-azul-marino.parallax-section {
+  background-color: #152166 !important;
+  color: white !important;
+}
+
+/* También aplicar a cualquier sección con estas clases */
+.py-5.bg-azul-marino,
+section.bg-azul-marino {
+  background-color: #152166 !important; 
+  color: white !important;
+}
+
+/* CORRECCIÓN SECCIÓN DE CONTACTO - Más oscura */
+#contacto {
+  color: white !important;
+  background-color: #152166 !important; 
+  padding: 5rem 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Sección de estadísticas - COLOR AZUL CLARO */
+.py-4.bg-azul-marino {
+  background-color: #1a237e !important;
+}
+
+/* Footer mantiene el azul más oscuro */
+footer,
+.footer {
+  background: #0d1748 !important; 
+  background-color: #0d1748 !important;
+}
+
+/* Sección "Sobre Nosotros" - mismo color que contacto */
+.py-5.bg-azul-marino,
+section.bg-azul-marino.parallax-section {
+  background-color: #152166 !important; 
+  color: white !important;
+}
+
+/* CORRECCIÓN SECCIÓN DE CONTACTO */
+#contacto {
+  color: white !important;
+  background-color: #152166 !important; 
+  padding: 5rem 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ESTILOS PARA NOTICIAS Y EVENTOS - MAYOR SEPARACIÓN */
+
+/* Sección de Noticias */
+.noticias-section {
+  padding: 1rem 0;
+}
+
+.noticias-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; 
+}
+
+.noticia-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem; 
+  box-shadow: 0 4px 15px rgba(26, 35, 126, 0.1);
+  border-left: 4px solid var(--azul-marino);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem; 
+}
+
+.noticia-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(26, 35, 126, 0.2);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Estilos específicos para imágenes de noticias */
+.noticia-card .card-img-top {
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.noticia-card .card-img-top:hover {
+  transform: scale(1.02);
+}
+
+/* Fallback para imágenes que no cargan */
+.noticia-imagen-fallback {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.noticia-imagen-fallback i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+/* Loading spinners con más espacio */
+.loading {
+  text-align: center;
+  padding: 3rem 1rem; 
+}
+
+/* Alerts con más espacio */
+.alert {
+  margin: 2rem 0; 
+  padding: 1.5rem; 
+  border-radius: 10px;
+}
+
+/* Loading estático sin rotación */
+.loading-estatico {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--azul-marino);
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.loading-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--azul-marino);
+  animation: loading-pulse 1.4s ease-in-out infinite both;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes loading-pulse {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mejorar la animación de aparición de noticias y eventos */
+.noticia-card, .evento-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Eliminar la animación de rotación existente */
+.loading .spinner-border,
+.loading::before {
+  animation: none !important;
+}
+
+/* CONTENIDO EXPANDIBLE - BOTÓN LEER MÁS - AGREGAR AL FINAL */
+.vista-publica .contenido-expandible {
+  position: relative;
+}
+
+.vista-publica .texto-contenido {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  transition: all 0.3s ease;
+}
+
+.vista-publica .contenido-expandible.collapsed .texto-contenido {
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.vista-publica .contenido-expandible.expanded .texto-contenido {
+  max-height: none;
+  overflow: visible;
+  text-overflow: initial;
+  display: block;
+  -webkit-line-clamp: initial;
+  line-clamp: initial;
+  -webkit-box-orient: initial;
+}
+
+.vista-publica .btn-leer-mas {
+  background: none;
+  border: none;
+  color: var(--azul-claro);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.vista-publica .btn-leer-mas:hover {
+  color: var(--azul-marino);
+  text-decoration: underline;
+}
+
+.vista-publica .btn-leer-mas:focus {
+  outline: 2px solid var(--azul-claro);
+  outline-offset: 2px;
+}
+
+.vista-publica .btn-leer-mas i {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.vista-publica .btn-leer-mas.expanded i {
+  transform: rotate(180deg);
+}
+
+/* Estilos para ContenidoExpandible en eventos */
+.evento-item .contenido-expandible {
+  margin-bottom: 10px;
+}
+
+.evento-item .contenido-expandible.collapsed .texto-contenido {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.evento-item .contenido-expandible.expanded .texto-contenido {
+  display: block;
+  overflow: visible;
+}
+
+.evento-item .btn-leer-mas {
+  background: none;
+  border: none;
+  color: var(--azul-marino);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.evento-item .btn-leer-mas:hover {
+  color: var(--azul-claro);
+  text-decoration: none;
+}
+
+.evento-item .btn-leer-mas i {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.evento-item .btn-leer-mas.expanded i {
+  transform: rotate(180deg);
+}
+
+/* ESTILOS PARA LOS NUEVOS BOTONES DE NOTICIAS */
+
+/* Header de noticia mejorado */
+.noticia-header {
+  border-bottom: 1px solid rgba(26, 35, 126, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.noticia-badges .badge {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Texto negro para badge destacada */
+.noticia-badges .badge.bg-warning {
+  color: #212529 !important;
+}
+
+/* Imagen de noticia con hover - sin ícono superpuesto */
+.noticia-imagen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f8f9fa;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noticia-imagen img {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block !important;
+}
+
+.noticia-imagen img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Título clickeable */
+.noticia-titulo {
+  transition: color 0.3s ease;
+}
+
+.noticia-titulo:hover {
+  color: var(--azul-claro) !important;
+  cursor: pointer;
+}
+
+/* Autor de la noticia */
+.noticia-autor {
+  border-left: 3px solid var(--azul-claro);
+  padding-left: 0.75rem;
+}
+
+/* Botón "Leer artículo completo" */
+.btn-leer-completo {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-leer-completo:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-leer-completo i.fa-arrow-right {
+  transition: transform 0.3s ease;
+}
+
+.btn-leer-completo:hover i.fa-arrow-right {
+  transform: translateX(5px);
+}
+
+/* Botón "Ver todas las noticias" */
+.btn-ver-todas {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-ver-todas:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-ver-todas i.fa-arrow-right {
+  transition: transform 0.3s ease;
+}
+
+.btn-ver-todas:hover i.fa-arrow-right {
+  transform: translateX(8px);
+}
+
+/* Acciones de noticia */
+.noticia-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(26, 35, 126, 0.1);
+}
+
+/* Información adicional de eventos - SIMPLE Y ELEGANTE */
+.evento-hora {
+  color: var(--azul-claro);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.evento-hora i {
+  color: var(--azul-accent);
+  font-size: 1rem;
+}
+
+/* Contenido del evento con mejor tipografía */
+.evento-item h5,
+.evento-item h6 {
+  color: var(--azul-marino);
+  margin-bottom: 0.5rem;
+}
+
+.evento-item p {
+  color: #4a5568;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.evento-item small {
+  color: var(--azul-claro);
+  font-weight: 500;
+}
+
+/* ARREGLOS DE LEGIBILIDAD PARA TODAS LAS NOTICIAS */
+
+/* Título principal - MEJORADO PARA LEGIBILIDAD */
+.text-azul-marino {
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700 !important;
+}
+
+.text-azul-marino i {
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  margin-right: 0.5rem;
+}
+
+/* Alternativa: Si prefieres un color más suave */
+.text-azul-marino i.fa-newspaper {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Botón "Volver al Inicio" - MEJORADO PARA LEGIBILIDAD */
+.btn-outline-primary {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid #0d1748 !important;
+  color: #0d1748 !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-shadow: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary:hover {
+  background: #0d1748 !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-outline-primary:focus {
+  background: #0d1748 !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 23, 72, 0.25);
+}
+
+/* Botón primario también mejorado */
+.btn-primary {
+  background: linear-gradient(45deg, #0d1748, #3949ab) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.4);
+}
+
+/* Mensaje cuando no hay noticias - MEJORADO */
+.text-center .text-muted {
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.text-center .fa-newspaper {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* ESTANDARIZACIÓN DE TODOS LOS BOTONES - ESTILO ACCESO/CONTACTO */
+
+/* Botón primario estandarizado */
+.btn-primary {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-shadow: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 23, 72, 0.25);
+}
+
+/* Botón outline primario estandarizado */
+.btn-outline-primary {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-shadow: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 23, 72, 0.25);
+}
+
+/* Botón acceso - mantener como referencia */
+.btn-acceso {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--azul-marino) !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-shadow: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-acceso:hover {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-acceso:focus,
+.btn-acceso:active {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3);
+}
+
+/* Botón contacto - mantener como referencia */
+.btn-contacto {
+  background: transparent !important;
+  border: 2px solid white !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-contacto:hover {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Botón contacto pequeño estandarizado */
+.btn-contacto-small {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--azul-marino) !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.5rem !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-contacto-small:hover {
+  background: white !important;
+  color: var(--azul-marino) !important;
+  border-color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Botón leer más estandarizado */
+.btn-leer-mas {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-leer-mas:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+/* Botón "Leer artículo completo" estandarizado */
+.btn-leer-completo {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-leer-completo:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-leer-completo i.fa-arrow-right {
+  transition: transform 0.3s ease;
+}
+
+.btn-leer-completo:hover i.fa-arrow-right {
+  transform: translateX(5px);
+}
+
+/* Botón "Ver todas las noticias" estandarizado */
+.btn-ver-todas {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-ver-todas:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+.btn-ver-todas i.fa-arrow-right {
+  transition: transform 0.3s ease;
+}
+
+.btn-ver-todas:hover i.fa-arrow-right {
+  transform: translateX(8px);
+}
+
+/* Botones sociales estandarizados */
+.boton-social {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton-social:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+/* Eliminar estilos específicos de redes sociales */
+.boton-facebook,
+.boton-instagram {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--azul-marino) !important;
+  color: var(--azul-marino) !important;
+}
+
+.boton-facebook:hover,
+.boton-instagram:hover {
+  background: var(--azul-marino) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(13, 23, 72, 0.3);
+}
+
+/* Tamaños de botones */
+.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-lg {
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+}
+
+/* Estados deshabilitados */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn:disabled:hover,
+.btn.disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* PANEL DE FILTROS EMBELLECIDO */
+
+/* Panel de filtros con diseño más elegante */
+.filtros-panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(15px);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(26, 35, 126, 0.15);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  transition: all 0.4s ease;
+}
+
+.filtros-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(26, 35, 126, 0.25);
+}
+
+/* Header del panel con degradado elegante */
+.filtros-panel .card-header {
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 1.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.filtros-panel .card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.filtros-panel:hover .card-header::before {
+  left: 100%;
+}
+
+.filtros-panel .card-header h5 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filtros-panel .card-header .fa-filter {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.filtros-panel .card-header .badge {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+}
+
+/* Cuerpo del panel */
+.filtros-panel .card-body {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+/* Labels mejorados */
+.filtros-panel .form-label {
+  color: #1a237e;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Campos de entrada estilizados */
+.filtros-panel .form-control,
+.filtros-panel .form-select {
+  border: 2px solid #e8eaf6;
+  border-radius: 15px;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(26, 35, 126, 0.08);
+}
+
+.filtros-panel .form-control:focus,
+.filtros-panel .form-select:focus {
+  border-color: #3949ab;
+  box-shadow: 0 0 0 0.2rem rgba(57, 73, 171, 0.25), 0 4px 15px rgba(26, 35, 126, 0.15);
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* Input group mejorado */
+.filtros-panel .input-group-text {
+  background: linear-gradient(135deg, #3949ab, #5c6bc0);
+  border: 2px solid #3949ab;
+  color: white;
+  border-radius: 15px 0 0 15px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(26, 35, 126, 0.15);
+}
+
+.filtros-panel .input-group .form-control {
+  border-left: none;
+  border-radius: 0 15px 15px 0;
+  border-color: #3949ab;
+}
+
+.filtros-panel .input-group .form-control:focus {
+  border-left: 2px solid #3949ab;
+}
+
+/* Botón limpiar mejorado */
+.filtros-panel .btn-outline-secondary {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+  border: 2px solid #dee2e6 !important;
+  color: #6c757d !important;
+  border-radius: 15px;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.15);
+}
+
+.filtros-panel .btn-outline-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6c757d, #495057) !important;
+  color: white !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+  border-color: #6c757d !important;
+}
+
+.filtros-panel .btn-outline-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Sección de filtros activos mejorada */
+.filtros-activos {
+  background: linear-gradient(135deg, #f8f9fa, #e8eaf6);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid rgba(57, 73, 171, 0.1);
+}
+
+.filtros-activos .badge {
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.filtros-activos .badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.filtros-activos .badge.bg-info {
+  background: linear-gradient(135deg, #17a2b8, #20c997) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filtros-activos .badge.bg-primary {
+  background: linear-gradient(135deg, #1a237e, #3949ab) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filtros-activos .badge.bg-success {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filtros-activos .btn-close {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.filtros-activos .btn-close:hover {
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* TEXTO "MOSTRANDO X NOTICIAS" EN BLANCO */
+.text-muted.mb-0,
+.resultados-info .text-muted,
+p.text-muted.mb-0 {
+  color: white !important;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+/* Responsive para el panel de filtros */
+@media (max-width: 768px) {
+  .filtros-panel .card-header {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .filtros-panel .card-header h5 {
+    font-size: 1.1rem;
+  }
+  
+  .filtros-panel .card-body {
+    padding: 1.5rem 1rem;
+  }
+  
+  .filtros-panel .form-control,
+  .filtros-panel .form-select {
+    padding: 0.875rem 1rem;
+  }
+  
+  .filtros-activos {
+    padding: 1rem;
+  }
+  
+  .filtros-activos .badge {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+    margin: 0.25rem 0.25rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 576px) {
+  .filtros-panel .card-header {
+    padding: 1rem;
+  }
+  
+  .filtros-panel .card-body {
+    padding: 1rem;
+  }
+  
+  .filtros-panel .g-3 > * {
+    margin-bottom: 1rem;
+  }
+}
+
+/* RESPONSIVE PARA EVENTOS EN MÓVILES */
+@media (max-width: 768px) {
+  .evento-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .evento-item h5,
+  .evento-item h6 {
+    font-size: 1rem;
+  }
+  
+  .evento-hora {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .evento-item {
+    padding: 0.875rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .evento-item h5,
+  .evento-item h6 {
+    font-size: 0.95rem;
+  }
+  
+  .evento-hora {
+    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* ESTILOS ESPECÍFICOS PARA PRÓXIMOS EVENTOS EN VISTA PÚBLICA */
+
+/* Contenedor de eventos en la card del sidebar */
+.eventos-section .eventos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Eventos en la card de próximos eventos - Estilo bandeja compacta */
+.eventos-section .evento-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, var(--azul-super-claro) 100%) !important;
+  border: 1px solid rgba(92, 107, 192, 0.15);
+  border-left: 4px solid var(--azul-marino);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 2px 6px rgba(26, 35, 126, 0.08),
+    0 1px 2px rgba(26, 35, 126, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.eventos-section .evento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--azul-marino), var(--azul-claro));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.eventos-section .evento-card:hover {
+  transform: translateY(-3px) translateX(2px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, var(--azul-card) 100%) !important;
+  border-left-color: var(--azul-marino);
+  border-color: rgba(92, 107, 192, 0.25);
+  box-shadow: 
+    0 6px 20px rgba(26, 35, 126, 0.15),
+    0 2px 8px rgba(26, 35, 126, 0.2);
+}
+
+.eventos-section .evento-card:hover::before {
+  opacity: 1;
+}
+
+/* Separador elegante entre eventos en la card */
+.eventos-section .evento-card + .evento-card {
+  position: relative;
+}
+
+.eventos-section .evento-card + .evento-card::after {
+  content: '';
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--azul-marino) 30%, var(--azul-claro) 70%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* Fecha del evento destacada */
+.eventos-section .evento-fecha {
+  background: linear-gradient(135deg, var(--azul-claro), var(--azul-marino));
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+/* Título del evento en la card */
+.eventos-section .evento-card h4 {
+  color: var(--azul-marino);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+/* Descripción del evento */
+.eventos-section .evento-card p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+/* Información de lugar y hora */
+.eventos-section .evento-lugar,
+.eventos-section .evento-hora {
+  color: var(--azul-claro);
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.eventos-section .evento-lugar:last-child,
+.eventos-section .evento-hora:last-child {
+  margin-bottom: 0;
+}
+
+.eventos-section .evento-lugar i,
+.eventos-section .evento-hora i {
+  color: var(--azul-marino);
+  font-size: 0.9rem;
+  width: 14px;
+  text-align: center;
+}
+
+/* Responsive para eventos en la card */
+@media (max-width: 768px) {
+  .eventos-section .eventos-grid {
+    gap: 1.25rem;
+  }
+  
+  .eventos-section .evento-card {
+    padding: 0.875rem;
+  }
+  
+  .eventos-section .evento-card h4 {
+    font-size: 0.95rem;
+  }
+  
+  .eventos-section .evento-fecha {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+}

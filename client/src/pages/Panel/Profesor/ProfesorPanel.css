@@ -1,0 +1,514 @@
+/* Variables específicas para profesor */
+:root {
+  --profesor-bg: #f4f6f9;
+  --profesor-sidebar: #2c3e50;
+  --profesor-primary: #3498db;
+  --profesor-success: #27ae60;
+  --profesor-danger: #e74c3c;
+  --profesor-warning: #f39c12;
+  --profesor-info: #17a2b8;
+}
+
+.profesor-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--profesor-bg);
+}
+
+.profesor-main {
+  flex: 1;
+  margin-left: 280px;
+  padding: 2rem;
+  background: var(--profesor-bg);
+  min-height: 100vh;
+  overflow-x: auto;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  .profesor-main {
+    margin-left: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profesor-main {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+.profesor-section {
+  padding: 20px;
+}
+
+.profesor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.profesor-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.stats {
+  font-size: 14px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  border-left: 4px solid var(--profesor-primary);
+}
+
+.dashboard-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--profesor-primary);
+  font-size: 16px;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--profesor-primary);
+}
+
+/* Tablas */
+.tabla-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.tabla-datos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-datos th,
+.tabla-datos td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-datos th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
+.tabla-datos tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* Estados */
+.estado {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.estado.activo { background: #d4edda; color: #155724; }
+.estado.inactivo { background: #f8d7da; color: #721c24; }
+.estado.pendiente { background: #fff3cd; color: #856404; }
+.estado.completado { background: #d4edda; color: #155724; }
+.estado.presente { background: #d4edda; color: #155724; }
+.estado.ausente { background: #f8d7da; color: #721c24; }
+
+.calificacion.aprobado { 
+  color: var(--profesor-success); 
+  font-weight: 600; 
+}
+
+.calificacion.reprobado { 
+  color: var(--profesor-danger); 
+  font-weight: 600; 
+}
+
+/* Clases Grid */
+.clases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.clase-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-left: 4px solid var(--profesor-info);
+}
+
+.clase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.clase-header h3 {
+  margin: 0;
+  color: var(--profesor-primary);
+}
+
+.clase-info p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* Repertorio Grid */
+.repertorio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pieza-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pieza-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pieza-header h3 {
+  margin: 0;
+  color: var(--profesor-primary);
+}
+
+.nivel {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nivel.principiante { background: #d4edda; color: #155724; }
+.nivel.intermedio { background: #fff3cd; color: #856404; }
+.nivel.avanzado { background: #f8d7da; color: #721c24; }
+
+.pieza-info p {
+  margin: 8px 0;
+}
+
+.pieza-acciones {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Progreso */
+.progreso-container {
+  margin-top: 20px;
+}
+
+.estudiante-progreso-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.estudiante-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.estudiante-header h3 {
+  margin: 0;
+  color: var(--profesor-primary);
+}
+
+.promedio-general {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--profesor-primary);
+}
+
+.progreso-barra {
+  background: #e9ecef;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.progreso-fill {
+  background: var(--profesor-success);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.materias-detalle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.materia-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.materia-nombre {
+  font-weight: 500;
+}
+
+.materia-promedio {
+  font-weight: 600;
+  color: var(--profesor-primary);
+}
+
+/* Tareas */
+.tareas-container {
+  margin-top: 20px;
+}
+
+.tarea-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  border-left: 4px solid var(--profesor-info);
+}
+
+.tarea-card.pendiente {
+  border-left-color: var(--profesor-warning);
+}
+
+.tarea-card.completado {
+  border-left-color: var(--profesor-success);
+}
+
+.tarea-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tarea-header h3 {
+  margin: 0;
+  color: var(--profesor-primary);
+}
+
+.tarea-content p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.tarea-meta {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.tarea-meta p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.tarea-acciones {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Botones */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--profesor-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}
+
+.btn-success {
+  background: var(--profesor-success);
+  color: white;
+}
+
+.btn-success:hover {
+  background: #229954;
+}
+
+.btn-warning {
+  background: var(--profesor-warning);
+  color: white;
+}
+
+.btn-warning:hover {
+  background: #e67e22;
+}
+
+.btn-danger {
+  background: var(--profesor-danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Acciones */
+.acciones {
+  display: flex;
+  gap: 8px;
+}
+
+/* Alertas */
+.alert {
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease;
+}
+
+.alert-danger {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--profesor-primary);
+  font-size: 18px;
+}
+
+.loading::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--profesor-primary);
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .clases-grid,
+  .repertorio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profesor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .tabla-container {
+    overflow-x: auto;
+  }
+  
+  .materias-detalle {
+    grid-template-columns: 1fr;
+  }
+  
+  .acciones {
+    flex-direction: column;
+  }
+  
+  .tarea-acciones,
+  .pieza-acciones {
+    flex-direction: column;
+  }
+}
