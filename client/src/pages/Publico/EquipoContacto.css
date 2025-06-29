@@ -186,9 +186,14 @@ body.vista-equipo-contacto-body {
 
 /* Contenedor de imagen del equipo */
 .imagen-equipo-contacto-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 2rem 1rem;
   text-align: center;
   background: linear-gradient(135deg, var(--azul-card) 0%, white 100%);
+  min-height: 180px; /* asegura espacio para centrar verticalmente */
 }
 
 .imagen-equipo-contacto {
@@ -199,6 +204,7 @@ body.vista-equipo-contacto-body {
   border: 5px solid white;
   box-shadow: 0 8px 20px rgba(26, 35, 126, 0.2);
   transition: all 0.3s ease;
+  display: block;
 }
 
 .card-equipo-contacto:hover .imagen-equipo-contacto {
