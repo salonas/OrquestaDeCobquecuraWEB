@@ -872,7 +872,8 @@ const FormularioNoticia = ({ noticia, onGuardar, onCancelar, guardando = false }
         contenido: noticia.contenido || '',
         resumen: noticia.resumen || '',
         autor: noticia.autor || 'Administrador',
-        categoria: noticia.categoria || '',
+        // Si la categoría es null, undefined o string vacío, usar 'General' por defecto
+        categoria: noticia.categoria && noticia.categoria.trim() !== '' ? noticia.categoria : 'General',
         visible: noticia.visible !== undefined ? noticia.visible : true,
         destacado: noticia.destacado !== undefined ? noticia.destacado : false
       });
@@ -1286,29 +1287,39 @@ const FormularioNoticia = ({ noticia, onGuardar, onCancelar, guardando = false }
       formDataToSend.append('destacado', formData.destacado);
       formDataToSend.append('fecha_publicacion', new Date().toISOString().split('T')[0]);
       
-      // Imagen principal
+      // ✅ MEJORAR: Manejo de imagen principal
       const imagenPrincipalSeleccionada = previewUrls.find(preview => preview.esPrincipal);
       
       if (imagenPrincipalSeleccionada) {
         if (imagenPrincipalSeleccionada.esExistente) {
-          console.log('Imagen principal existente:', imagenPrincipalSeleccionada.id_imagen);
-          formDataToSend.append('imagen_principal_existente', imagenPrincipalSeleccionada.id_imagen);
+          console.log('Imagen principal existente:', imagenPrincipalSeleccionada.id);
+          formDataToSend.append('imagen_principal_existente', imagenPrincipalSeleccionada.id);
         } else {
           console.log('Nueva imagen principal:', imagenPrincipalSeleccionada.file.name);
           formDataToSend.append('imagen', imagenPrincipalSeleccionada.file);
+        }
+      } else {
+        console.log('No hay imagen principal seleccionada');
+        // Si estamos editando y no hay principal seleccionada, podemos quitar la principal
+        if (noticia?.id_noticia) {
+          formDataToSend.append('quitar_imagen_principal', 'true');
         }
       }
       
       // Archivos de galería
       const archivosGaleria = previewUrls.filter(preview => !preview.esPrincipal && !preview.esExistente);
       archivosGaleria.forEach((preview, index) => {
-        console.log(`Agregando archivo ${index + 1} a galería:`, preview.file.name);
-        formDataToSend.append('imagenes_galeria', preview.file);
+        if (preview.file) {
+          console.log(`Agregando archivo ${index + 1} a galería (imagenes_galeria):`, preview.file.name);
+          formDataToSend.append('imagenes_galeria', preview.file); // <-- nombre correcto
+        } else {
+          console.warn('Archivo de galería sin file:', preview);
+        }
       });
 
       // Orden de imágenes
       const ordenImagenes = previewUrls.map((preview, index) => ({
-        nombre: preview.esExistente ? preview.id_imagen : preview.file.name,
+        nombre: preview.esExistente ? preview.id : preview.file.name,
         orden: index,
         esPrincipal: preview.esPrincipal,
         esExistente: preview.esExistente

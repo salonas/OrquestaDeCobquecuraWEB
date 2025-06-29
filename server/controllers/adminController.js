@@ -1450,41 +1450,23 @@ const adminController = {
 
   actualizarNoticia: async (req, res) => {
     try {
+      console.log('📝 [ADMIN] Actualizando noticia');
+      console.log('📋 req.body:', JSON.stringify(req.body, null, 2));
+      if (req.files) {
+        console.log('📁 req.files keys:', Object.keys(req.files));
+        Object.entries(req.files).forEach(([campo, archivos]) => {
+          console.log(`  📂 Campo '${campo}': ${archivos.length} archivo(s)`);
+          archivos.forEach((archivo, idx) => {
+            console.log(`    [${idx}] ${archivo.originalname} -> ${archivo.filename}`);
+          });
+        });
+      } else {
+        console.log('📁 req.files está vacío o undefined');
+      }
+
       const { id } = req.params;
       console.log('🔄 Actualizando noticia ID:', id);
-      console.log('📋 Datos recibidos:', req.body);
-      console.log('📁 Archivos recibidos:', req.files);
-
-      // ✅ VALIDAR QUE TENEMOS DATOS
-      if (!req.body || Object.keys(req.body).length === 0) {
-        console.error('❌ req.body está vacío o undefined');
-        return res.status(400).json({
-          error: 'No se recibieron datos para actualizar',
-          debug: {
-            body: req.body,
-            files: req.files,
-            headers: req.headers['content-type']
-          }
-        });
-      }
-
-      const {
-        titulo,
-        contenido,
-        resumen,
-        fecha_publicacion,
-        autor,
-        categoria,
-        visible,
-        destacado
-      } = req.body;
-
-      // ✅ VALIDACIÓN BÁSICA
-      if (!titulo || !contenido) {
-        return res.status(400).json({
-          error: 'Título y contenido son obligatorios'
-        });
-      }
+      console.log('📝 Datos recibidos:', req.body);
 
       // Verificar que la noticia existe
       const noticiaExistente = await execute(
@@ -1502,8 +1484,8 @@ const adminController = {
 
       // Generar nuevo slug si el título cambió
       let slugFinal = noticia.slug;
-      if (titulo && titulo !== noticia.titulo) {
-        const nuevoSlug = titulo.toLowerCase()
+      if (req.body.titulo && req.body.titulo !== noticia.titulo) {
+        const nuevoSlug = req.body.titulo.toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
           .replace(/[^a-z0-9\s]/g, '')
@@ -1523,22 +1505,23 @@ const adminController = {
         }
       }
 
-      // Procesar nueva imagen principal si existe
-      let imagen_principal = noticia.imagen_principal; // Mantener la actual por defecto
+      // MEJORAR: Procesar imagen principal (nueva o existente)
+      // NOTA: Usamos tabla noticias_imagenes, no el campo imagen_principal de noticias
 
+      // Caso 1: Nueva imagen principal subida
       if (req.files && req.files.imagen && req.files.imagen[0]) {
         const archivo = req.files.imagen[0];
-        imagen_principal = `/uploads/noticias/${archivo.filename}`;
-        console.log('🖼️ Nueva imagen principal:', imagen_principal);
+        const imagen_principal_url = `/uploads/noticias/${archivo.filename}`;
+        console.log('🖼️ Nueva imagen principal:', imagen_principal_url);
 
-        // ✅ ELIMINAR IMAGEN PRINCIPAL ANTERIOR DE noticias_imagenes
+        // Eliminar imagen principal anterior de noticias_imagenes
         console.log('🗑️ Eliminando imagen principal anterior de noticias_imagenes...');
         await execute(
           'DELETE FROM noticias_imagenes WHERE noticia_id = ? AND es_principal = 1',
           [id]
         );
 
-        // ✅ GUARDAR NUEVA IMAGEN PRINCIPAL EN noticias_imagenes
+        // Guardar nueva imagen principal en noticias_imagenes
         console.log('💾 Guardando nueva imagen principal en noticias_imagenes...');
         const queryImagenPrincipal = `
         INSERT INTO noticias_imagenes (
@@ -1549,7 +1532,7 @@ const adminController = {
 
         await execute(queryImagenPrincipal, [
           id,
-          imagen_principal,
+          imagen_principal_url,
           archivo.originalname || 'Imagen principal',
           0, // orden 0 para imagen principal
           1, // es_principal = true
@@ -1559,9 +1542,42 @@ const adminController = {
         ]);
 
         console.log('✅ Nueva imagen principal guardada en noticias_imagenes');
+      } 
+      // Caso 2: Imagen principal existente seleccionada
+      else if (req.body.imagen_principal_existente) {
+        const imagenExistenteId = req.body.imagen_principal_existente;
+        console.log('🔄 Cambiando imagen principal a existente ID:', imagenExistenteId);
+
+        // Quitar es_principal de todas las imágenes
+        await execute(
+          'UPDATE noticias_imagenes SET es_principal = 0 WHERE noticia_id = ?',
+          [id]
+        );
+
+        // Establecer la imagen seleccionada como principal
+        const resultadoUpdate = await execute(
+          'UPDATE noticias_imagenes SET es_principal = 1, orden = 0 WHERE id_imagen = ? AND noticia_id = ?',
+          [imagenExistenteId, id]
+        );
+
+        if (resultadoUpdate.affectedRows > 0) {
+          console.log('✅ Imagen principal actualizada en noticias_imagenes');
+        }
+      }
+      // Caso 3: Quitar imagen principal
+      else if (req.body.quitar_imagen_principal === 'true') {
+        console.log('🗑️ Quitando imagen principal...');
+        
+        // Quitar es_principal de todas las imágenes
+        await execute(
+          'UPDATE noticias_imagenes SET es_principal = 0 WHERE noticia_id = ?',
+          [id]
+        );
+        
+        console.log('✅ Imagen principal removida de noticias_imagenes');
       }
 
-      // ACTUALIZAR LA NOTICIA
+      // ACTUALIZAR LA NOTICIA (SIN imagen_principal - usamos noticias_imagenes)
       const query = `
       UPDATE noticias SET 
         titulo = ?, 
@@ -1571,33 +1587,53 @@ const adminController = {
         fecha_publicacion = ?, 
         autor = ?, 
         categoria = ?, 
-        imagen_principal = ?, 
         visible = ?, 
         destacado = ?,
         fecha_actualizacion = CURRENT_TIMESTAMP
       WHERE id_noticia = ?
     `;
 
-      // ✅ CORREGIR: Manejo correcto de valores booleanos desde FormData
-      const visibleValue = (() => {
-        if (visible === undefined || visible === null) return noticia.visible;
-        if (visible === 'true' || visible === true || visible === 1 || visible === '1') return 1;
-        if (visible === 'false' || visible === false || visible === 0 || visible === '0') return 0;
-        return noticia.visible; // Mantener valor actual si no se puede determinar
-      })();
+      // MEJORAR: Manejo robusto de valores booleanos desde FormData
+      console.log('🔍 Valores booleanos recibidos:', {
+        visible: { valor: visible, tipo: typeof visible },
+        destacado: { valor: destacado, tipo: typeof destacado }
+      });
 
-      const destacadoValue = (() => {
-        if (destacado === undefined || destacado === null) return noticia.destacado;
-        if (destacado === 'true' || destacado === true || destacado === 1 || destacado === '1') return 1;
-        if (destacado === 'false' || destacado === false || destacado === 0 || destacado === '0') return 0;
-        return noticia.destacado; // Mantener valor actual si no se puede determinar
-      })();
+      // Función helper para convertir valores a boolean correctamente
+      const convertirABoolean = (valor, valorActual, nombreCampo) => {
+        console.log(`🔧 Convirtiendo "${valor}" (${typeof valor})`);
+        
+        if (valor === undefined || valor === null) {
+          console.log(`  ⏩ Manteniendo valor actual: ${valorActual}`);
+          return valorActual;
+        }
+        
+        // Convertir string '1'/'0' o 'true'/'false' a boolean numérico
+        if (valor === 'true' || valor === true || valor === 1 || valor === '1') {
+          console.log(`  ✅ Resultado: true`);
+          return true;
+        }
+        
+        if (valor === 'false' || valor === false || valor === 0 || valor === '0') {
+          console.log(`  ✅ Resultado: false`);
+          return false;
+        }
+        
+        console.log(`  ⚠️ Valor no reconocido, manteniendo actual: ${valorActual}`);
+        return valorActual;
+      };
 
-      console.log('🔧 Valores de visibilidad:', {
-        original_visible: visible,
-        processed_visible: visibleValue,
-        original_destacado: destacado,
-        processed_destacado: destacadoValue
+      const visibleValue = convertirABoolean(visible, noticia.visible, 'visible');
+      const destacadoValue = convertirABoolean(destacado, noticia.destacado, 'destacado');
+
+      console.log('🔧 Valores finales:', { visible: visibleValue, destacado: destacadoValue });
+
+      // LOG ESPECÍFICO PARA CATEGORÍA
+      console.log('🏷️ CATEGORÍA - Análisis detallado:', {
+        categoria_recibida: req.body.categoria,
+        categoria_procesada: categoria,
+        categoria_final: categoria || noticia.categoria,
+        categoria_actual_bd: noticia.categoria
       });
 
       const parametros = [
@@ -1607,18 +1643,195 @@ const adminController = {
         resumen !== undefined ? resumen : noticia.resumen,
         fecha_publicacion || noticia.fecha_publicacion,
         autor || noticia.autor,
-        categoria || noticia.categoria,
-        imagen_principal,
+        categoria || noticia.categoria, // ✅ EXPLÍCITO: mantener categoria actual si no se envía nueva
         visibleValue,
         destacadoValue,
         id
       ];
 
-      console.log('📝 Parámetros para UPDATE:', parametros);
+      console.log('� Ejecutando query:');
+      console.log(query);
+      console.log('�📝 Parámetros:', parametros);
 
-      await execute(query, parametros);
+      const result = await execute(query, parametros);
+      console.log(`✅ Filas afectadas: ${result.affectedRows}`);
+      
+      if (result.affectedRows === 0) {
+        console.log('⚠️ No se actualizó ninguna fila - verificando ID...');
+        return res.status(404).json({
+          error: 'No se pudo actualizar la noticia - ID no encontrado'
+        });
+      }
+      
+      console.log('✅ Noticia actualizada correctamente');
 
-      // ✅ PROCESAR GALERÍA DE IMÁGENES ADICIONALES (si las hay)
+      // VALIDAR Y PROCESAR ARCHIVOS SUBIDOS ANTES DEL ORDEN
+      if (req.files) {
+        console.log('📁 Procesando archivos subidos...');
+        console.log('📁 Archivos recibidos durante actualización:');
+        console.log('📁 COMPLETA ESTRUCTURA DE req.files:', JSON.stringify(Object.keys(req.files), null, 2));
+        Object.keys(req.files).forEach(campo => {
+          console.log(`  📂 Campo "${campo}": ${req.files[campo].length} archivos`);
+          req.files[campo].forEach((archivo, index) => {
+            console.log(`    📄 [${index}] ${archivo.originalname} -> ${archivo.filename}`);
+          });
+        });
+        
+        // Procesar archivos de imagen principal
+        if (req.files.imagen && req.files.imagen.length > 0) {
+          console.log('📸 Se subió imagen principal, ya procesada arriba');
+        }
+        
+        // Procesar archivos de galería
+        if (req.files.imagenes_galeria && req.files.imagenes_galeria.length > 0) {
+          console.log('🖼️ Procesando imágenes de galería:', req.files.imagenes_galeria.length);
+          
+          for (let i = 0; i < req.files.imagenes_galeria.length; i++) {
+            const archivo = req.files.imagenes_galeria[i];
+            
+            try {
+              const imagenUrl = `/uploads/noticias/${archivo.filename}`;
+              
+              const queryInsertGaleria = `
+                INSERT INTO noticias_imagenes (
+                  noticia_id, imagen_url, imagen_alt, orden, es_principal, 
+                  tipo_archivo, tipo_mime, tamaño_archivo
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+              `;
+              
+              await execute(queryInsertGaleria, [
+                id,
+                imagenUrl,
+                archivo.originalname || `Imagen galería ${i + 1}`,
+                i + 1, // orden secuencial
+                0, // es_principal = false para galería
+                archivo.mimetype.startsWith('video/') ? 'video' : 'imagen',
+                archivo.mimetype,
+                archivo.size
+              ]);
+              
+              console.log(`✅ Imagen galería ${i + 1} guardada:`, archivo.filename);
+              
+            } catch (error) {
+              console.error(`❌ Error guardando imagen galería ${i + 1}:`, error);
+            }
+          }
+        }
+      } else {
+        console.log('📁 NO se recibieron archivos en la actualización');
+        console.log('🔍 Verificando orden_imagenes para imágenes no existentes...');
+        
+        if (req.body.orden_imagenes) {
+          try {
+            const ordenImagenes = JSON.parse(req.body.orden_imagenes);
+            const imagenesNoExistentes = ordenImagenes.filter(img => !img.esExistente);
+            if (imagenesNoExistentes.length > 0) {
+              console.log('⚠️ PROBLEMA: Se enviaron imágenes nuevas en orden_imagenes pero NO se recibieron archivos:');
+              imagenesNoExistentes.forEach((img, i) => {
+                console.log(`  🚫 [${i}] ${img.nombre} - esperada pero no encontrada en req.files`);
+              });
+            }
+          } catch (e) {
+            console.log('❌ Error parseando orden_imagenes para debug:', e.message);
+          }
+        }
+      }
+
+      // PROCESAR ORDEN DE IMÁGENES si se envió (CORREGIDO)
+      if (req.body.orden_imagenes) {
+        try {
+          const ordenImagenes = JSON.parse(req.body.orden_imagenes);
+          console.log('🔄 Procesando orden de imágenes:', ordenImagenes);
+
+          for (let i = 0; i < ordenImagenes.length; i++) {
+            const item = ordenImagenes[i];
+            console.log(`📋 Procesando item ${i}:`, item);
+            
+            // Si es una imagen existente, actualizar su orden
+            if (item.esExistente && item.id_imagen) {
+              console.log(`🔄 Actualizando orden de imagen existente ID: ${item.id_imagen}`);
+              await execute(
+                'UPDATE noticias_imagenes SET orden = ?, es_principal = ? WHERE id_imagen = ? AND noticia_id = ?',
+                [item.orden, item.esPrincipal ? 1 : 0, item.id_imagen, id]
+              );
+            }
+            // Si es una imagen nueva y tenemos archivos subidos
+            else if (!item.esExistente && req.files) {
+              console.log(`📸 Procesando imagen nueva: ${item.nombre}`);
+              
+              // Buscar el archivo correspondiente en TODOS los campos posibles
+              let archivoEncontrado = null;
+              
+              // Lista de todos los campos posibles donde pueden venir archivos
+              const camposArchivos = ['imagen', 'imagenes_galeria', 'archivos', 'imagenes', 'files'];
+              
+              console.log(`🔍 Buscando archivo "${item.nombre}" en campos:`, camposArchivos);
+              
+              for (const campo of camposArchivos) {
+                if (req.files[campo] && req.files[campo].length > 0) {
+                  console.log(`  🔍 Buscando en campo "${campo}" (${req.files[campo].length} archivos)`);
+                  archivoEncontrado = req.files[campo].find(f => {
+                    const coincideOriginal = f.originalname === item.nombre;
+                    const coincideFilename = f.filename === item.nombre;
+                    const coincideBase = f.originalname === item.nombre.split('.')[0] + '.' + f.originalname.split('.').pop();
+                    
+                    console.log(`    📄 ${f.originalname} -> ${f.filename}: ${coincideOriginal || coincideFilename || coincideBase ? '✅' : '❌'}`);
+                    return coincideOriginal || coincideFilename || coincideBase;
+                  });
+                  
+                  if (archivoEncontrado) {
+                    console.log(`  ✅ ¡Archivo encontrado en campo "${campo}"!`);
+                    break;
+                  }
+                }
+              }
+              
+              if (archivoEncontrado) {
+                console.log(`✅ Archivo encontrado para ${item.nombre}:`, archivoEncontrado.filename);
+                
+                const imagenUrl = `/uploads/noticias/${archivoEncontrado.filename}`;
+                
+                // Insertar en noticias_imagenes
+                const queryInsertImagen = `
+                  INSERT INTO noticias_imagenes (
+                    noticia_id, imagen_url, imagen_alt, orden, es_principal, 
+                    tipo_archivo, tipo_mime, tamaño_archivo
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                `;
+                
+                const resultado = await execute(queryInsertImagen, [
+                  id,
+                  imagenUrl,
+                  archivoEncontrado.originalname || item.nombre,
+                  item.orden,
+                  item.esPrincipal ? 1 : 0,
+                  archivoEncontrado.mimetype.startsWith('video/') ? 'video' : 'imagen',
+                  archivoEncontrado.mimetype,
+                  archivoEncontrado.size
+                ]);
+                
+                console.log(`✅ Imagen insertada en BD con ID: ${resultado.insertId}`);
+                
+                // Si es imagen principal, actualizar el campo imagen_principal de la noticia
+                if (item.esPrincipal) {
+                  await execute(
+                    'UPDATE noticias SET imagen_principal = ? WHERE id_noticia = ?',
+                    [imagenUrl, id]
+                  );
+                  console.log(`🖼️ Imagen principal actualizada: ${imagenUrl}`);
+                }
+              } else {
+                console.log(`⚠️ No se encontró archivo para: ${item.nombre}`);
+              }
+            }
+          }
+          console.log('✅ Orden de imágenes procesado completamente');
+        } catch (error) {
+          console.error('❌ Error procesando orden de imágenes:', error);
+        }
+      }
+
+      // PROCESAR GALERÍA DE IMÁGENES ADICIONALES (si las hay)
       if (req.files && req.files.imagenes_galeria && req.files.imagenes_galeria.length > 0) {
         console.log('📸 Agregando nueva galería:', req.files.imagenes_galeria.length, 'archivos');
 
@@ -1656,7 +1869,7 @@ const adminController = {
         }
       }
 
-      // ✅ PROCESAR ARCHIVOS ADICIONALES (campo 'archivos')
+      // PROCESAR ARCHIVOS ADICIONALES (campo 'archivos')
       if (req.files && req.files.archivos && req.files.archivos.length > 0) {
         console.log('📦 Agregando archivos adicionales:', req.files.archivos.length);
 
@@ -1716,9 +1929,19 @@ const adminController = {
 
     } catch (error) {
       console.error('❌ Error actualizando noticia:', error);
+      
+      // Logging detallado del error
+      console.error('🔍 Stack trace completo:', error.stack);
+      console.error('🔍 Datos enviados:', {
+        body: req.body,
+        files: req.files ? Object.keys(req.files) : 'sin archivos',
+        params: req.params
+      });
+      
       res.status(500).json({
         error: 'Error actualizando la noticia',
-        details: error.message
+        details: error.message,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
       });
     }
   },
@@ -1747,14 +1970,14 @@ const adminController = {
       console.log('🔄 Creando token (datos recibidos):', req.body);
       const { token, tipo_usuario, usos_maximos, fecha_expiracion } = req.body;
 
-      // ✅ VALIDACIONES sin modificar el token
+      // VALIDACIONES sin modificar el token
       if (!token || token.trim().length < 6) {
         return res.status(400).json({
           error: 'El token debe tener al menos 6 caracteres'
         });
       }
 
-      // ✅ Verificar que no contenga espacios
+      // Verificar que no contenga espacios
       if (token.includes(' ')) {
         return res.status(400).json({
           error: 'El token no puede contener espacios'
@@ -2188,6 +2411,7 @@ const adminController = {
     try {
       console.log('📝 Actualizando noticia ID:', req.params.id);
       console.log('📋 Datos recibidos:', req.body);
+      console.log('📁 Archivos recibidos:', req.files);
 
       const noticiaId = req.params.id;
       const {
@@ -2206,7 +2430,7 @@ const adminController = {
         destacado: { valor: destacado, tipo: typeof destacado }
       });
 
-      // ✅ FUNCIÓN HELPER PARA CONVERTIR BOOLEANOS
+      // FUNCIÓN HELPER PARA CONVERTIR BOOLEANOS
       const toBoolean = (value) => {
         console.log(`🔧 Convirtiendo "${value}" (${typeof value})`);
         if (value === '1' || value === 'true' || value === true || value === 1) {
@@ -2229,21 +2453,21 @@ const adminController = {
         destacado: destacadoFinal
       });
 
-      // ✅ VALIDACIONES BÁSICAS
+      // VALIDACIONES BÁSICAS
       if (!titulo || !contenido) {
         return res.status(400).json({
           error: 'Título y contenido son obligatorios'
         });
       }
 
-      // ✅ GENERAR NUEVO SLUG
+      // GENERAR NUEVO SLUG
       const slug = titulo
         .toLowerCase()
         .replace(/[^a-z0-9\s-]/g, '')
         .replace(/\s+/g, '-')
         .trim();
 
-      // ✅ ACTUALIZAR NOTICIA EN BD
+      // ACTUALIZAR NOTICIA EN BD
       const queryActualizar = `
         UPDATE noticias SET 
           titulo = ?, 
@@ -2282,7 +2506,7 @@ const adminController = {
 
       console.log('✅ Noticia actualizada correctamente');
 
-      // ✅ OBTENER NOTICIA ACTUALIZADA
+      // OBTENER NOTICIA ACTUALIZADA
       const queryObtener = `
         SELECT id_noticia, titulo, slug, contenido, resumen, 
                fecha_publicacion, autor, categoria, imagen_principal,
@@ -2292,6 +2516,31 @@ const adminController = {
       `;
 
       const noticiaActualizada = await execute(queryObtener, [noticiaId]);
+
+      // INSERTAR NUEVAS IMÁGENES DE GALERÍA EN LA TABLA noticias_imagenes
+      if (req.files && req.files.imagenes_galeria && req.files.imagenes_galeria.length > 0) {
+        console.log('🖼️ Insertando nuevas imágenes de galería en la BD:', req.files.imagenes_galeria.length);
+        for (let i = 0; i < req.files.imagenes_galeria.length; i++) {
+          const archivo = req.files.imagenes_galeria[i];
+          const imagenUrl = `/uploads/noticias/${archivo.filename}`;
+          await execute(
+            `INSERT INTO noticias_imagenes 
+              (noticia_id, imagen_url, imagen_alt, orden, es_principal, tipo_archivo, tipo_mime, tamaño_archivo)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+              noticiaId,
+              imagenUrl,
+              archivo.originalname,
+              i, // orden
+              0, // es_principal
+              archivo.mimetype.startsWith('video/') ? 'video' : 'imagen',
+              archivo.mimetype,
+              archivo.size
+            ]
+          );
+          console.log(`✅ Imagen de galería insertada: ${archivo.originalname}`);
+        }
+      }
 
       res.json({
         message: 'Noticia actualizada exitosamente',
